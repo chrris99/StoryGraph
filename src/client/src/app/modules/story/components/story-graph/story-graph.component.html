@@ -1,1 +1,16 @@
-<p>Story Graph</p>
+<div class="w-full h-full flex justify-center">
+  <ng-container *ngIf="nodes.length != 0 || edges.length != 0; else graphPlaceholder">
+      <ngx-graph
+      [links]="edges"
+      [nodes]="nodes"
+      [showMiniMap]="true"
+    >
+    </ngx-graph>
+  </ng-container>
+
+  <ng-template #graphPlaceholder>
+    <p class="text-gray-500 self-center ">
+      Graph visualization will appear here.
+    </p>
+  </ng-template>
+</div>

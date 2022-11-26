@@ -1,6 +1,11 @@
 <app-layout>
-  <div class="flex flex-row justify-between">
-    <app-story-input></app-story-input>
-    <app-story-graph></app-story-graph>
-  </div>
+  <app-title [title]="title" [text]="description"></app-title>
+  <section class="grid grid-cols-2 mt-8">
+    <div class="col-span-2 md:col-span-1">
+      <app-story-input></app-story-input>
+    </div>
+    <div class="col-span-2 mt-16 md:col-span-1 md:mt-0">
+      <app-story-graph></app-story-graph>
+    </div>
+  </section>
 </app-layout>
