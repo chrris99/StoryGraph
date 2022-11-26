@@ -1,0 +1,73 @@
+<app-layout>
+  <app-title
+    [title]="title"
+    [text]="description"
+  ></app-title>
+
+  <section class="flex justify-center mt-8">
+    <table class="table-auto w-full text-sm text-left text-gray-500 lg:w-3/4">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+        <tr>
+          <th scope="col" class="py-3 px-6">
+            Title
+          </th>
+          <th scope="col" class="py-3 px-6">
+            Date
+          </th>
+          <th scope="col" class="py-3 px-6">
+            <span class="sr-only">View</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container
+          *ngIf="records.length != 0; else historyPlaceholder"
+          class="flex justify-center overflow-x-auto relative mt-8 rounded-lg"
+        >
+          <tr
+            *ngFor="let record of records; let last = last"
+            class="bg-white"
+            [ngClass]="{'border-b': !last}"
+          >
+            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
+              {{ record.title }}
+            </th>
+            <td class="py-4 px-6">
+              {{ record.date }}
+            </td>
+            <td class="py-4 px-6 text-right flex flex-row justify-end font-medium text-blue-600 hover:text-blue-700">
+              <button class="flex flex-row justify-end">
+                <span class="hidden mr-2 sm:inline-block">View</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </button>
+            </td>
+          </tr>
+        </ng-container>
+
+        <ng-template #historyPlaceholder>
+          <tr class="">
+            <td colspan="3">
+              <div class="flex flex-col items-center mt-16">
+                <p class="text-gray-500 self-center my-5 text-center">
+                  Looks like you don't have any previous visualizations to display.
+                </p>
+                <a
+                  routerLink="/story"
+                  class="flex flex-row rounded-lg bg-blue-600 hover:bg-blue-700 px-5 py-2 text-sm font-medium text-white"
+                >
+                  <span class="mr-2">Visualize</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+                  </svg>
+                </a>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </table>
+  </section>
+</app-layout>

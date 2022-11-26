@@ -1,5 +1,10 @@
 <app-layout>
-  <app-title [title]="title" [text]="description"></app-title>
+
+  <app-title
+    [title]="title"
+    [text]="description"
+  ></app-title>
+
   <section class="grid grid-cols-2 mt-8">
     <div class="col-span-2 md:col-span-1">
       <app-story-input></app-story-input>
@@ -8,4 +13,5 @@
       <app-story-graph></app-story-graph>
     </div>
   </section>
+
 </app-layout>
