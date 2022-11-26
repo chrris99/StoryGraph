@@ -1,0 +1,35 @@
+## Sentence splitter microservice
+
+
+### Building the Docker image
+```bash
+docker build . -t sw-arch-nlp-sentence-splitter:latest
+```
+
+
+### Running the containerized web service
+```bash
+docker build . -t sw-arch-nlp-sentence-splitter:latest
+```
+
+
+### Expected input payload schema
+```bash
+{
+  "document": "Ez egy magyar mondat. Ez még egy. Ez egy harmadik, amiben Ady Endre is benne van :D"
+}
+```
+
+### Output payload schema
+```bash
+{
+    "statusCode": "200 OK",
+    "body": {
+        "sentences": [
+            "Ez egy magyar mondat.",
+            "Ez még egy.",
+            "Ez megy egy harmadik, amiben Ady Endre is benne van :D"
+        ]
+    }
+}
+```
