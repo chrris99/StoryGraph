@@ -11,13 +11,26 @@
       </div>
 
       <nav aria-label="Site Nav" class="hidden gap-8 text-sm font-medium md:flex">
-        <a routerLink="/story" routerLinkActive="text-blue-600 hover:text-blue-700 font-bold" class="text-gray-500 hover:text-gray-600">Story</a>
-        <a routerLink="/history" class="text-gray-500 hover:text-gray-700">History</a>
+        <a
+          routerLink="/story"
+          routerLinkActive="underline underline-offset-8 decoration-4 decoration-blue-600"
+          class="text-gray-500 hover:text-gray-600"
+        >
+          Story
+        </a>
+
+        <a
+          routerLink="/history"
+          routerLinkActive="underline underline-offset-8 decoration-4 decoration-blue-600"
+          class="text-gray-500 hover:text-gray-700"
+        >
+          History
+        </a>
       </nav>
 
       <div class="hidden flex-1 items-center justify-end gap-4 sm:flex">
         <a routerLink="/auth/login" class="rounded-lg bg-gray-100 hover:bg-gray-200 px-5 py-2 text-sm font-medium text-gray-500">
-          Log in
+          Sign in
         </a>
 
         <a routerLink="/auth/register" class="rounded-lg bg-blue-600 hover:bg-blue-700 px-5 py-2 text-sm font-medium text-white">
