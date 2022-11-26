@@ -9,7 +9,7 @@ docker build . -t sw-arch-nlp-sentence-splitter:latest
 
 ### Running the containerized web service
 ```bash
-docker build . -t sw-arch-nlp-sentence-splitter:latest
+docker docker run -p 5000:5000 sw-arch-nlp-sentence-splitter:latest
 ```
 
 
