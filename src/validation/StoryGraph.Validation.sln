@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoryGraph.Validation.Web", "StoryGraph.Validation.Web\StoryGraph.Validation.Web.csproj", "{308B8276-6B1E-4026-8AF3-A4A6E8513010}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoryGraph.Validation.Domain", "StoryGraph.Validation.Domain\StoryGraph.Validation.Domain.csproj", "{A94036AE-BE04-49A9-9C3F-B7AD6035A079}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{308B8276-6B1E-4026-8AF3-A4A6E8513010}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{308B8276-6B1E-4026-8AF3-A4A6E8513010}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{308B8276-6B1E-4026-8AF3-A4A6E8513010}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{308B8276-6B1E-4026-8AF3-A4A6E8513010}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A94036AE-BE04-49A9-9C3F-B7AD6035A079}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A94036AE-BE04-49A9-9C3F-B7AD6035A079}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A94036AE-BE04-49A9-9C3F-B7AD6035A079}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A94036AE-BE04-49A9-9C3F-B7AD6035A079}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
