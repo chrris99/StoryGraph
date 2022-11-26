@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoryGraph.Domain", "StoryGraph.Domain\StoryGraph.Domain.csproj", "{E44A9BF5-0964-4B50-87D9-082509A533D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoryGraph.Api", "StoryGraph.Api\StoryGraph.Api.csproj", "{24A559C6-D036-43BD-93E1-61B050F30F88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoryGraph.Application", "StoryGraph.Application\StoryGraph.Application.csproj", "{F7A4EFE5-452E-483C-8770-8D5B0AB78E7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoryGraph.Web", "StoryGraph.Web\StoryGraph.Web.csproj", "{117BA7D1-8D28-4CBD-B715-1260E2266FC0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E44A9BF5-0964-4B50-87D9-082509A533D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E44A9BF5-0964-4B50-87D9-082509A533D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E44A9BF5-0964-4B50-87D9-082509A533D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E44A9BF5-0964-4B50-87D9-082509A533D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24A559C6-D036-43BD-93E1-61B050F30F88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24A559C6-D036-43BD-93E1-61B050F30F88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24A559C6-D036-43BD-93E1-61B050F30F88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24A559C6-D036-43BD-93E1-61B050F30F88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7A4EFE5-452E-483C-8770-8D5B0AB78E7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7A4EFE5-452E-483C-8770-8D5B0AB78E7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7A4EFE5-452E-483C-8770-8D5B0AB78E7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7A4EFE5-452E-483C-8770-8D5B0AB78E7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{117BA7D1-8D28-4CBD-B715-1260E2266FC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{117BA7D1-8D28-4CBD-B715-1260E2266FC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{117BA7D1-8D28-4CBD-B715-1260E2266FC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{117BA7D1-8D28-4CBD-B715-1260E2266FC0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
