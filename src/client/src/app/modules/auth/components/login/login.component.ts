@@ -16,8 +16,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService,
-    private router: Router
+    private auth: AuthService
   ) {
     this.form = this.formBuilder.group({
       email: [ '', Validators.required ],
@@ -28,18 +27,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void { }
 
   public login(): void {
-
     const data = this.form.value;
 
-    console.log(data.email);
-    console.log(data.password);
-
     if (data.email && data.password) {
-      this.authService
-        .login(data.email, data.password)
-        .subscribe(user => {
-          this.router.navigateByUrl('/');
-        })
+      this.auth.login(data.email, data.password);
     }
   }
 }

@@ -14,6 +14,8 @@ using StoryGraph.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var policy = builder.Configuration.GetValue<string>("Cors:Policy");
+
 builder.Services
     .AddControllers()
     .AddApplicationPart(AssemblyReference.Assembly)
@@ -24,38 +26,37 @@ builder.Services
     .AddSwaggerGen();
 
 // Configure Swagger
-builder.Services
-    .AddSwaggerGen(options =>
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
     {
-        options.SwaggerDoc("v1", new OpenApiInfo
-        {
-            Title = "Story Visualizer API",
-            Version = "v1"
-        });
-        options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
-        {            
-            Name = "Authorization",
-            Description = "Enter a valid token",
-            In = ParameterLocation.Header,
-            Type = SecuritySchemeType.Http,
-            BearerFormat = "JWT",
-            Scheme = JwtBearerDefaults.AuthenticationScheme
-        });
-        options.AddSecurityRequirement(new OpenApiSecurityRequirement
-        {
-            {
-                new OpenApiSecurityScheme
-                {
-                    Reference = new OpenApiReference
-                    {
-                        Type = ReferenceType.SecurityScheme,
-                        Id = JwtBearerDefaults.AuthenticationScheme
-                    }
-                },
-                new List<string>()
-            }
-        });
+        Title = "Story Visualizer API",
+        Version = "v1"
     });
+    options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
+    {            
+        Name = "Authorization",
+        Description = "Enter a valid token",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.Http,
+        BearerFormat = "JWT",
+        Scheme = JwtBearerDefaults.AuthenticationScheme
+    });
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = JwtBearerDefaults.AuthenticationScheme
+                }
+            },
+            new List<string>()
+        }
+    });
+});
 
 // Configure Database Connection
 builder.Services
@@ -67,17 +68,18 @@ builder.Services
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 // Configure Identity Options
-builder.Services
-    .Configure<IdentityOptions>(options =>
-    {
-        options.Password.RequireDigit = false;
-        options.Password.RequireLowercase = false;
-        options.Password.RequireUppercase = false;
-        options.Password.RequireNonAlphanumeric = false;
-        options.Password.RequiredLength = 8;
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.User.RequireUniqueEmail = true;
+    options.User.AllowedUserNameCharacters =
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+/ ";
 
-        options.User.RequireUniqueEmail = true;
-    });
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequiredLength = 8;
+});
 
 // Configure JWT Authentication
 builder.Services
@@ -104,9 +106,20 @@ builder.Services
         };
     });
 
+// Configure CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(policy, corsPolicyBuilder => corsPolicyBuilder
+        .WithOrigins(builder.Configuration.GetValue<string>("Cors:Origin"))
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials());
+});
+
 // Configure Services
-builder.Services.AddScoped<ITokenProvider, JwtProvider>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services
+    .AddScoped<ITokenProvider, JwtProvider>()
+    .AddScoped<IUserRepository, UserRepository>();
 
 var app = builder.Build();
 
@@ -120,6 +133,8 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseCors(policy);
 
 app.MapControllers();
 

@@ -22,7 +22,8 @@ public sealed class UserRepository : IUserRepository
         var user = new IdentityUser
         {
             Email = email,
-            UserName = userName
+            UserName = userName,
+            
         };
 
         var result = await _userManager.CreateAsync(user, password);

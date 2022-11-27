@@ -23,30 +23,50 @@ export class AuthService {
     return token !== null ? true : false;
   }
 
-  public login(email: string, password: string): Observable<any> {
-    const url = `${this.authBaseUrl}/login`;
+  get user(): string {
+    let name = localStorage.getItem('user');
 
-    return this.http.post<AuthResponse>(url, {
-      email: email,
-      password: password
-    });
+    return name !== null ? name : '';
   }
 
-  public register(email: string, name: string, password: string): Observable<AuthResponse> {
+  public login(email: string, password: string): void {
+    const url = `${this.authBaseUrl}/login`;
+
+    this.http
+      .post<AuthResponse>(url, {
+        email: email,
+        password: password
+      })
+      .subscribe((res: AuthResponse) => {
+        this.saveUser(res);
+      });
+  }
+
+  public register(email: string, name: string, password: string): void {
     const url = `${this.authBaseUrl}/register`;
 
-    return this.http
+    this.http
       .post<AuthResponse>(url, {
         email: email,
         name: name,
         password: password
+      })
+      .subscribe((res: AuthResponse) => {
+        this.saveUser(res);
       });
   }
 
   public logout(): void {
-      let token = localStorage.removeItem('token');
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
 
-      if (token == null)
-        this.router.navigate(['auth', 'signin']);
+      this.router.navigate(['/']);
+  }
+
+  private saveUser(res: AuthResponse): void {
+    localStorage.setItem('token', res.token);
+    localStorage.setItem('user', res.name);
+
+    this.router.navigateByUrl('/');
   }
 }

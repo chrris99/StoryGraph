@@ -29,7 +29,7 @@ public sealed class AuthController : ControllerBase
     [ProducesResponseType(typeof(Error), StatusCodes.Status409Conflict)]
     public async Task<IActionResult> Register([FromBody] RegisterRequest request)
     {
-        var createResult = await _repository.RegisterAsync(request.Name, request.Email, request.Password);
+        var createResult = await _repository.RegisterAsync(request.Email, request.Name, request.Password);
         
         if (createResult.IsFailure)
             return BadRequest(createResult.Error);
