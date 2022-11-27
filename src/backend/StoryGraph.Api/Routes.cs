@@ -4,13 +4,12 @@ internal static class Routes
 {
     private const string Root = "api";
     
-    internal static class User
+    internal static class Auth
     {
-        private const string Base = $"{Root}/user";
+        private const string Base = $"{Root}/auth";
 
-        public const string SignUp = $"{Base}/signup";
-        public const string SignIn = $"{Base}/signin";
-        public const string Delete = $"{Base}";
+        public const string Login = $"{Base}/login";
+        public const string Register = $"{Base}/register";
     }
 
     internal static class Story
