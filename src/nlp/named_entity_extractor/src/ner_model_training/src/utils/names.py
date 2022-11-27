@@ -1,0 +1,12 @@
+TRAIN_TSV = "train.tsv"
+DEV_TSV = "dev.tsv"
+DEV_SIZE = 'dev_size'
+TRAIN_SIZE = 'train_size'
+MODEL_DIR = 'model'
+PROCESSED = "processed"
+EMBEDDINGS_PKL = 'embeddings.pkl'
+VECTORIZER_PKL = 'vectorizer.pkl'
+WORD_VOCAB = 'word_list.tsv'
+CHAR_VOCAB = 'char_vocab.tsv'
+LABEL_VOCAB = 'label_vocab.tsv'
+CONFIG_JSON = "config.json"
