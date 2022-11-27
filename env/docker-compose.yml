@@ -3,7 +3,7 @@ version: '3.8'
 services:
   backend:
     build:
-      dockerfile: ../src/backend/Dockerfile
+      context: ../src/backend
     image: backend
     ports:
       - "5000:80"
@@ -24,3 +24,24 @@ services:
       - ACCEPT_EULA=Y
     ports:
       - "1433:1433"
+
+  sentence-splitter:
+    build:
+      context: ../src/nlp/sentence_splitter
+    image: sentence-splitter
+    ports:
+      - "5002:5000"
+
+  token-enricher:
+    build:
+      context: ../src/nlp/token_enricher
+    image: token-enricher
+    ports:
+      - "5003:5001"
+
+  named-entity-extractor:
+    build:
+      context: ../src/nlp/named_entity_extractor
+    image: named-entity-extractor
+    ports:
+      - "5004:5002"
