@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   validationUrl: 'http://localhost:5036',
-  graphUrl: 'http://localhost:<port>'
+  backendUrl: 'http://localhost:5065'
 };
 
 /*

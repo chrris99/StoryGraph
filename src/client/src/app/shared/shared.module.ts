@@ -9,6 +9,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { TitleComponent } from './components/title/title.component';
 import { UnauthorizedComponent } from './errors/unauthorized/unauthorized.component';
 import { ErrorComponent } from './errors/error/error.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ErrorComponent } from './errors/error/error.component';
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
     RouterModule
   ],
   exports: [
