@@ -37,8 +37,7 @@ public sealed class JwtProvider : ITokenProvider
             Audience = _options.Audience,
             Subject = new ClaimsIdentity(new Claim[]
             {
-                new ("userId", user.Id),
-                new ("email", user.Email)
+                new (ClaimTypes.Email, user.Email)
             }),
             // TODO: Add expiration date
             SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
