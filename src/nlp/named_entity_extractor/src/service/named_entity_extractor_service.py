@@ -9,7 +9,7 @@ from logging import getLogger
 logger = getLogger(__name__)
 
 
-class SentenceSplitting:
+class EntityExtraction:
     def __init__(self):
         self.config_path = 'ner_model_training/data/ner/hu/1.0/train_ner.yml'
         self.named_entity_extractor = NamedEntityExtractorPipeline(self.config_path)
@@ -32,7 +32,7 @@ class SentenceSplitting:
 
 def create_app():
     app = falcon.API()
-    app.add_route('/extract_person_entities', SentenceSplitting())
+    app.add_route('/extract_person_entities', EntityExtraction())
     return app
 
 
