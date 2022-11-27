@@ -13,7 +13,7 @@ import { BaseEvent } from '../events/base-event';
   providedIn: 'root'
 })
 export class SignalrService {
-  baseUrl: string = `${environment.backendUrl}/api`;
+  baseUrl: string = `${environment.backendUrl}/hub`;
 
   private hubConnection: HubConnection | undefined;
 
