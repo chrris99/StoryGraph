@@ -13,7 +13,7 @@ import { BaseEvent } from '../events/base-event';
   providedIn: 'root'
 })
 export class SignalrService {
-  url: string = environment.graphUrl;
+  baseUrl: string = `${environment.backendUrl}/api`;
 
   private hubConnection: HubConnection | undefined;
 
@@ -23,7 +23,7 @@ export class SignalrService {
     this.stopConnection();
 
     this.hubConnection = new HubConnectionBuilder()
-      .withUrl(this.url, {
+      .withUrl(this.baseUrl, {
         transport: HttpTransportType.WebSockets
       })
       .withHubProtocol(new JsonHubProtocol())

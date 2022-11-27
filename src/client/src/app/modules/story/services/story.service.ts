@@ -10,7 +10,7 @@ import { Story } from '../models/story';
   providedIn: 'root'
 })
 export class StoryService {
-  url: string = environment.graphUrl;
+  url: string = `${environment.backendUrl}/api`;
   validationUrl: string = environment.validationUrl;
 
   constructor(private http: HttpClient) { }

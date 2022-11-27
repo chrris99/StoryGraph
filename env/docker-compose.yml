@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      dockerfile: ../src/backend/Dockerfile
+    image: backend
+    ports:
+      - "5000:80"
+    depends_on:
+      - mssql
+
+  validation:
+    build:
+      context: ../src/validation
+    image: validation
+    ports:
+      - "5001:80"
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - MSSQL_SA_PASSWORD=Pass@word
+      - ACCEPT_EULA=Y
+    ports:
+      - "1433:1433"

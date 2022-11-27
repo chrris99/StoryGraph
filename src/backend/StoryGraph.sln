@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoryGraph.Application", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoryGraph.Web", "StoryGraph.Web\StoryGraph.Web.csproj", "{117BA7D1-8D28-4CBD-B715-1260E2266FC0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoryGraph.Infrastructure", "StoryGraph.Infrastructure\StoryGraph.Infrastructure.csproj", "{7AF17E56-8B81-478F-9A76-CF4C6177FEA4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{117BA7D1-8D28-4CBD-B715-1260E2266FC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{117BA7D1-8D28-4CBD-B715-1260E2266FC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{117BA7D1-8D28-4CBD-B715-1260E2266FC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AF17E56-8B81-478F-9A76-CF4C6177FEA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AF17E56-8B81-478F-9A76-CF4C6177FEA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AF17E56-8B81-478F-9A76-CF4C6177FEA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AF17E56-8B81-478F-9A76-CF4C6177FEA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
