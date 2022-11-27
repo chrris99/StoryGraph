@@ -1,5 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { resourceUsage } from 'process';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { StoryService } from '../../services/story.service';
 
 @Component({
@@ -8,22 +9,40 @@ import { StoryService } from '../../services/story.service';
   styleUrls: ['./story-input.component.css']
 })
 export class StoryInputComponent implements OnInit {
-  @Output() inputSubmitted: EventEmitter<string> = new EventEmitter<string>(); // might not be needed
+  form: FormGroup;
 
-  constructor(private story: StoryService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private story: StoryService
+  ) {
+    this.form = formBuilder.group({
+      title: [ '', Validators.required ],
+      text: [ '', Validators.required ]
+    });
+  }
 
   ngOnInit(): void { }
 
-  public submit(title: string, story: string): void {
-    this.story
+  public submit(): void {
+    if (this.form.valid) {
+      const title: string = this.form.value.title;
+      const text: string = this.form.value.text;
+
+      this.story
       .validate({
         title: title,
-        text: story
+        text: text
       })
-      .subscribe(result => {
-        if (!result.ok) {
+      .subscribe(() => {
+        console.log("Input validation completed");
 
-        }
-      })
+        this.story
+          .visualize({
+            title: title,
+            text: text
+          })
+          .subscribe(() => console.log("Story visualization completed"));
+      });
+    }
   }
 }

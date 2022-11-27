@@ -29,9 +29,6 @@ export class StoryGraphComponent implements OnInit, OnDestroy {
         this.signalr
           .subscribe(EdgeDetected, event => this.addEdge(event))
       });
-
-    this.nodes = this.graph.getNodes();
-    this.edges = this.graph.getEdges();
   }
 
   ngOnDestroy(): void {

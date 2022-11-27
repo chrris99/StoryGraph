@@ -8,6 +8,7 @@ import { StoryGraphComponent } from './components/story-graph/story-graph.compon
 import { StoryInputComponent } from './components/story-input/story-input.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { StoryVisualizerComponent } from './components/story-visualizer/story-visualizer.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,8 @@ import { StoryVisualizerComponent } from './components/story-visualizer/story-vi
   imports: [
     CommonModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     NgxGraphModule,
     SharedModule,
     StoryRoutingModule
