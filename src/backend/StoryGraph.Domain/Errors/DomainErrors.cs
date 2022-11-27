@@ -24,4 +24,10 @@ public static class DomainErrors
         public static Error IncorrectPassword =>
             new("User.IncorrectPassword", "The provided password is incorrect.");
     }
+
+    public static class Story
+    {
+        public static Error NotFoundById =>
+            new("Story.NotFoundById", "Story with given ID not found in database.");
+    }
 }

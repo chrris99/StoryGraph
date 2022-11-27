@@ -11,5 +11,9 @@ public sealed class Story : Entity, IAuditableEntity
     public DateTime CreatedOnUtc { get; set; }
     public DateTime? ModifiedOnUtc { get; set; }
     
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Story"/> class.
+    /// </summary>
+    /// <param name="id"></param>
     public Story(Guid id) : base(id) { }
 }
