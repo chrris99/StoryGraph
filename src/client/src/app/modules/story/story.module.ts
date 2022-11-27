@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
 
 import { StoryRoutingModule } from './story-routing.module';
@@ -16,6 +17,7 @@ import { StoryVisualizerComponent } from './components/story-visualizer/story-vi
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
     NgxGraphModule,
     SharedModule,
     StoryRoutingModule

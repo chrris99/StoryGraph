@@ -11,4 +11,8 @@ export class StoryInputComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void { }
+
+  public submit(title: string, story: string): void {
+
+  }
 }

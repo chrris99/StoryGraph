@@ -3,7 +3,7 @@ import { Edge, Node } from '@swimlane/ngx-graph';
 import { SignalrService } from 'src/app/shared/services/signalr.service';
 import { EdgeDetected } from '../../events/edge-detected';
 import { NodeDetected } from '../../events/node-detected';
-import { GraphService } from '../../services/graph.service';
+import { StoryService } from '../../services/story.service';
 
 @Component({
   selector: 'app-story-graph',
@@ -15,7 +15,7 @@ export class StoryGraphComponent implements OnInit, OnDestroy {
   edges: Edge[] = [];
 
   constructor(
-    private graph: GraphService,
+    private graph: StoryService,
     private signalr: SignalrService
   ) { }
 

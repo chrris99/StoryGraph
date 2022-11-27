@@ -5,6 +5,7 @@ import {
   HttpTransportType,
   JsonHubProtocol
 } from '@microsoft/signalr';
+import { environment } from 'src/environments/environment';
 
 import { BaseEvent } from '../events/base-event';
 
@@ -12,6 +13,8 @@ import { BaseEvent } from '../events/base-event';
   providedIn: 'root'
 })
 export class SignalrService {
+  url: string = environment.graphUrl;
+
   private hubConnection: HubConnection | undefined;
 
   constructor() { }
@@ -20,7 +23,7 @@ export class SignalrService {
     this.stopConnection();
 
     this.hubConnection = new HubConnectionBuilder()
-      .withUrl('url', {
+      .withUrl(this.url, {
         transport: HttpTransportType.WebSockets
       })
       .withHubProtocol(new JsonHubProtocol())

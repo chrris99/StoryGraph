@@ -1,12 +1,28 @@
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Node, Edge } from '@swimlane/ngx-graph';
+
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { Story } from '../models/story';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GraphService {
-  constructor() { }
+export class StoryService {
+  url: string = environment.graphUrl;
+  validationUrl: string = environment.validationUrl;
 
+  constructor(private http: HttpClient) { }
+
+  public validate(story: Story): Observable<HttpResponse<void>> {
+    return this.http
+      .post<HttpResponse<void>>(this.validationUrl, story);
+  }
+
+  public visualize(story: Story): void {
+    //return this.http.post('url')
+  }
 
   public getEdges(): Edge[] {
     const edges: Edge[] = [

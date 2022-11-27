@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  validationUrl: 'http://localhost:5036',
+  graphUrl: 'http://localhost:<port>'
 };
 
 /*
