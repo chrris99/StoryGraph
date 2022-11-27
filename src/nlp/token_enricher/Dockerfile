@@ -18,9 +18,7 @@ RUN poetry config virtualenvs.create false
 COPY poetry.lock .
 COPY pyproject.toml .
 RUN poetry install --no-dev
-
-COPY install_huspacy_model.py .
-RUN python install_huspacy_model.py
+RUN pip install https://huggingface.co/huspacy/hu_core_news_lg/resolve/main/hu_core_news_lg-any-py3-none-any.whl
 
 
 #copy app
