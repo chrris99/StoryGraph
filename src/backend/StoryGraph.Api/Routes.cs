@@ -15,8 +15,9 @@ internal static class Routes
     internal static class Story
     {
         private const string Base = $"{Root}/story";
-        
+
+        public const string Create = $"{Base}";
         public const string Get = $"{Base}";
-        public const string Delete = $"{Base}";
+        public const string Delete = Base + "/{id:guid}";
     }
 }
