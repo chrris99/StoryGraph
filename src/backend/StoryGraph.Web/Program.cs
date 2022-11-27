@@ -4,12 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
-
+using Microsoft.AspNetCore.Http.Connections;
 using StoryGraph.Api;
+using StoryGraph.Application.Hubs;
 using StoryGraph.Application.Repositories;
 using StoryGraph.Application.Services;
 using StoryGraph.Infrastructure;
 using StoryGraph.Infrastructure.Authentication;
+using StoryGraph.Infrastructure.Language;
 using StoryGraph.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -116,10 +118,21 @@ builder.Services.AddCors(options =>
         .AllowCredentials());
 });
 
+// Configure SignalR
+builder.Services.AddSignalR();
+
+// Configure Http Clients for NLP Services
+builder.Services.AddHttpClient();
+
 // Configure Services
 builder.Services
+    .AddScoped<ISentenceSplitter, SentenceSplitter>()
+    .AddScoped<ITokenEnricher, TokenEnricher>()
+    .AddScoped<INamedEntityRecognizer, NamedEntityRecognizer>()
+    .AddScoped<IVisualizationService, GraphVisualizationService>()
     .AddScoped<ITokenProvider, JwtProvider>()
-    .AddScoped<IUserRepository, UserRepository>();
+    .AddScoped<IUserRepository, UserRepository>()
+    .AddScoped<IStoryRepository, StoryRepository>();
 
 var app = builder.Build();
 
@@ -137,5 +150,10 @@ app.UseAuthorization();
 app.UseCors(policy);
 
 app.MapControllers();
+
+app.MapHub<StoryHub>("/hub", options =>
+{
+    options.Transports = HttpTransportType.WebSockets;
+});
 
 app.Run();
