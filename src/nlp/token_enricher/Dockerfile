@@ -15,6 +15,7 @@ WORKDIR /tmp
 
 # Configure & install dependencies with poetry
 RUN poetry config virtualenvs.create false
+COPY poetry.lock .
 COPY pyproject.toml .
 RUN poetry install --no-dev
 
