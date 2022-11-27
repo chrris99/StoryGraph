@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace StoryGraph.Application;
+namespace StoryGraph.Application.Services;
 
 /// <summary>
-/// Represents an authentication token provider.
+/// Represents an authentication token provider service.
 /// </summary>
 public interface ITokenProvider
 {

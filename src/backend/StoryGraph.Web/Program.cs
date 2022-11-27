@@ -1,12 +1,13 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
+using System.Text;
+
 using StoryGraph.Api;
-using StoryGraph.Application;
 using StoryGraph.Application.Repositories;
+using StoryGraph.Application.Services;
 using StoryGraph.Infrastructure;
 using StoryGraph.Infrastructure.Authentication;
 using StoryGraph.Infrastructure.Repositories;

@@ -1,15 +1,16 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using StoryGraph.Application;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+
+using StoryGraph.Application.Services;
 
 namespace StoryGraph.Infrastructure.Authentication;
 
 /// <summary>
-/// Represents a JWT authentication token provider.
+/// Represents a JWT authentication token provider service.
 /// </summary>
 public sealed class JwtProvider : ITokenProvider
 {
