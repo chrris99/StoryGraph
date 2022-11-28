@@ -8,8 +8,8 @@ class NamedEntityExtractorPipeline:
     def extract_person_entities_from_payload(self, payload):
         """Receives a JSON payload (output of token-enricher service)
         and returns the list of named entities belonging to the PER class"""
-        token_list = [token['text'] for token in payload['body']['tokens']]
-        lemma_list = [token['lemma'] for token in payload['body']['tokens']]
+        token_list = [token['text'] for token in payload['tokens']]
+        lemma_list = [token['lemma'] for token in payload['tokens']]
         output_labels = self.predictor.run([token_list])
         entities = []
         current_entity = None
