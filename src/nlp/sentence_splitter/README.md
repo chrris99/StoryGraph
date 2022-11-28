@@ -22,14 +22,7 @@ docker docker run -p 5000:5000 sw-arch-nlp-sentence-splitter:latest
 
 ### Output payload schema
 ```bash
-{
-    "statusCode": "200 OK",
-    "body": {
-        "sentences": [
-            "Ez egy magyar mondat.",
-            "Ez még egy.",
-            "Ez megy egy harmadik, amiben Ady Endre is benne van :D"
-        ]
-    }
-}
+["Ez egy magyar mondat.",
+ "Ez még egy.",
+ "Ez megy egy harmadik, amiben Ady Endre is benne van :D"]
 ```

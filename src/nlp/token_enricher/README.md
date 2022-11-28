@@ -22,10 +22,7 @@ docker run -p 5001:5001 sw-arch-nlp-token-enricher:latest
 
 ### Output payload schema
 ```bash
-{
-    "statusCode": "200 OK",
-    "body": {
-        "tokens": [
+[
             {
                 "text": "Ez",
                 "universalPos": "PRON",
@@ -86,7 +83,6 @@ docker run -p 5001:5001 sw-arch-nlp-token-enricher:latest
                 "universalPos": "PUNCT",
                 "lemma": "."
             }
-        ]
-    }
-}
+]
+
 ```
