@@ -22,7 +22,7 @@ class TokenEnrichment:
             result = self.enrich_tokens(payload)
             response.status = falcon.HTTP_200
             response.body = json.dumps({
-               'statusCode': falcon.HTTP_200, 'body': result
+                'body': result
             })
         except Exception as e:
             response.status = falcon.HTTP_400

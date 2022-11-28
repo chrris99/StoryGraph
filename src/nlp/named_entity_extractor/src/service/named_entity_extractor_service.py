@@ -23,7 +23,7 @@ class EntityExtraction:
             result = self.extract_person_entities(payload)
             response.status = falcon.HTTP_200
             response.body = json.dumps({
-               'statusCode': falcon.HTTP_200, 'body': result
+                'body': result
             })
         except Exception as e:
             response.status = falcon.HTTP_400

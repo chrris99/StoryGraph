@@ -22,7 +22,7 @@ class SentenceSplitting:
             result = self.split_sentence(payload)
             response.status = falcon.HTTP_200
             response.body = json.dumps({
-               'statusCode': falcon.HTTP_200, 'body': result
+               'body': result
             })
         except Exception as e:
             response.status = falcon.HTTP_400
