@@ -21,9 +21,7 @@ class SentenceSplitting:
             payload = request.media
             result = self.split_sentence(payload)
             response.status = falcon.HTTP_200
-            response.body = json.dumps({
-               'body': result
-            })
+            response.body = json.dumps(result)
         except Exception as e:
             response.status = falcon.HTTP_400
             logger.error(f'Failed to process request: {request} with exception: {e}. Traceback: {traceback.format_exc()}')
