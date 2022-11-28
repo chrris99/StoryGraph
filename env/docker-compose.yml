@@ -1,14 +1,29 @@
 version: '3.8'
 
 services:
+  client:
+    build:
+      context: ../src/client
+    image: client
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+      - validation
+
   backend:
     build:
       context: ../src/backend
     image: backend
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Production"
     ports:
       - "5000:80"
     depends_on:
       - mssql
+      - sentence-splitter
+      - token-enricher
+      - named-entity-extractor
 
   validation:
     build:
@@ -24,7 +39,7 @@ services:
       - ACCEPT_EULA=Y
     ports:
       - "1433:1433"
-
+  
   sentence-splitter:
     build:
       context: ../src/nlp/sentence_splitter
@@ -35,9 +50,9 @@ services:
   token-enricher:
     build:
       context: ../src/nlp/token_enricher
-    image: token-enricher
-    ports:
-      - "5003:5001"
+      image: token-enricher
+      ports:
+        - "5003:5001"
 
   named-entity-extractor:
     build:
