@@ -15,7 +15,6 @@ docker run -p 5002:5002 sw-arch-named-entity-extractor:latest
 ### Expected input payload schema
 ```bash
 {
-    "body": {
         "tokens": [
             {
                 "text": "Az",
@@ -98,21 +97,13 @@ docker run -p 5002:5002 sw-arch-named-entity-extractor:latest
                 "lemma": "."
             }
         ]
-    }
 }
 ```
 
 ### Output payload schema
 ```bash
-{
-    "statusCode": "200 OK",
-    "body": {
-        "person_entities": [
-            "Ady Endre",
-            "Babits Mihály"
-        ]
-    }
-}
+[ "Ady Endre",
+"Babits Mihály"]
 ```
 
 ## Model training
