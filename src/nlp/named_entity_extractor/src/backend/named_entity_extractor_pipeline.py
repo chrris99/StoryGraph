@@ -31,9 +31,7 @@ class NamedEntityExtractorPipeline:
                 entities.append(current_entity)
                 current_entity = None
 
-        return {
-            'person_entities': entities
-        }
+        return entities
 
 
 if __name__ == '__main__':
