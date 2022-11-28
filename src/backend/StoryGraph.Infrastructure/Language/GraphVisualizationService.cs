@@ -4,6 +4,7 @@ using StoryGraph.Application.Hubs;
 using StoryGraph.Application.Services;
 using StoryGraph.Domain.Abstractions;
 using StoryGraph.Domain.Events;
+using StoryGraph.Domain.Utilities;
 
 namespace StoryGraph.Infrastructure.Language;
 
@@ -45,20 +46,34 @@ public sealed class GraphVisualizationService : IVisualizationService
 
     private async void PublishEvents(IEnumerable<string> entities)
     {
-        var entityList = entities.ToList();
+        var entityList = entities
+            .Distinct()
+            .ToList();
         
         if (!entityList.Any()) return;
-        
-        // First publish all detected nodes
+
         foreach (var entity in entityList)
         {
             await _hubContext.Clients.All.NodeDetected(new NodeDetectedEvent
             {
-                Id = new Guid().ToString(),
+                Id = entity,
                 Label = entity
             });
         }
-        
-        // TODO Then publish a detected edge between every detected node
+
+        var combinations = entityList
+            .SelectMany(_ => entityList, Tuple.Create)
+            .Where(tuple => tuple.Item1 != tuple.Item2)
+            .Distinct(new TupleComparer<string>())
+            .ToList();
+
+        foreach (var edge in combinations)
+        {
+            await _hubContext.Clients.All.EdgeDetected(new EdgeDetectedEvent
+            {
+                Source = edge.Item1,
+                Target = edge.Item2
+            });
+        }
     }
 }

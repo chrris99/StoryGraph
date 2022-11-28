@@ -16,7 +16,11 @@ services:
       context: ../src/backend
     image: backend
     environment:
-      ASPNETCORE_ENVIRONMENT: "Production"
+      - ConnectionStrings__Default=server=mssql;user id=sa;password=Pass@word;
+
+      - Services__SentenceSplitter=http://sentence-splitter:5000
+      - Services__TokenEnricher=http://token-enricher:5001
+      - Services__NamedEntityExtractor=http://named-entity-extractor:5002
     ports:
       - "5000:80"
     depends_on:
@@ -31,14 +35,6 @@ services:
     image: validation
     ports:
       - "5001:80"
-
-  mssql:
-    image: mcr.microsoft.com/mssql/server:2019-latest
-    environment:
-      - MSSQL_SA_PASSWORD=Pass@word
-      - ACCEPT_EULA=Y
-    ports:
-      - "1433:1433"
   
   sentence-splitter:
     build:
@@ -50,9 +46,9 @@ services:
   token-enricher:
     build:
       context: ../src/nlp/token_enricher
-      image: token-enricher
-      ports:
-        - "5003:5001"
+    image: token-enricher
+    ports:
+      - "5003:5001"
 
   named-entity-extractor:
     build:
@@ -60,3 +56,11 @@ services:
     image: named-entity-extractor
     ports:
       - "5004:5002"
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - MSSQL_SA_PASSWORD=Pass@word
+      - ACCEPT_EULA=Y
+    ports:
+      - "1433:1433"

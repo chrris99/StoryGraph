@@ -1,27 +1,43 @@
-﻿using System.Net.Http.Json;
-
+﻿using Newtonsoft.Json;
+using System.Net.Http.Json;
+using System.Text;
+using Newtonsoft.Json.Serialization;
 using StoryGraph.Application.Services;
 using StoryGraph.Domain.Models;
+using StoryGraph.Infrastructure.Contracts;
 
 namespace StoryGraph.Infrastructure.Language;
 
 public sealed class NamedEntityRecognizer : INamedEntityRecognizer
 {
-    private readonly HttpClient _http;
+    private const string Endpoint = "/extract_person_entities";
     
-    public NamedEntityRecognizer(HttpClient http)
+    private readonly IHttpClientFactory _httpClientFactory;
+    
+    public NamedEntityRecognizer(IHttpClientFactory httpClientFactory)
     {
-        _http = http;
+        _httpClientFactory = httpClientFactory;
     }
     
     public async Task<IEnumerable<string>> GetEntitiesAsync(IEnumerable<Token> tokens)
     {
-        const string endpoint = "/extract_person_entities";
+        var httpClient = _httpClientFactory.CreateClient(nameof(NamedEntityRecognizer));
 
-        using var response = await _http.PostAsJsonAsync(endpoint, new
+        var serializerSettings = new JsonSerializerSettings
         {
-            tokens
-        });
+            ContractResolver = new DefaultContractResolver
+            {
+                NamingStrategy = new CamelCaseNamingStrategy()
+            },
+            Formatting = Formatting.Indented
+        };
+
+        var payload = new StringContent(JsonConvert.SerializeObject(new NamedEntityRecognizerRequest
+        {
+            Tokens = tokens
+        }, serializerSettings), Encoding.UTF8, "application/json");
+        
+        using var response = await httpClient.PostAsync(Endpoint, payload);
 
         response.EnsureSuccessStatusCode();
 

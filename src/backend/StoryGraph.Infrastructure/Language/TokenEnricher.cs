@@ -1,26 +1,43 @@
-﻿using System.Net.Http.Json;
+﻿using Newtonsoft.Json;
+using System.Net.Http.Json;
+using System.Text;
+using Newtonsoft.Json.Serialization;
 using StoryGraph.Application.Services;
 using StoryGraph.Domain.Models;
+using StoryGraph.Infrastructure.Contracts;
 
 namespace StoryGraph.Infrastructure.Language;
 
 public sealed class TokenEnricher : ITokenEnricher
 {
-    private readonly HttpClient _http;
+    private const string Endpoint = "/enrich_tokens";
     
-    public TokenEnricher(HttpClient http)
+    private readonly IHttpClientFactory _httpClientFactory;
+    
+    public TokenEnricher(IHttpClientFactory httpClientFactory)
     {
-        _http = http;
+        _httpClientFactory = httpClientFactory;
     }
     
     public async Task<IEnumerable<Token>> GetTokensAsync(string sentence)
     {
-        const string endpoint = "/enrich_tokens";
+        var httpClient = _httpClientFactory.CreateClient(nameof(TokenEnricher));
 
-        using var response = await _http.PostAsJsonAsync(endpoint, new
+        var serializerSettings = new JsonSerializerSettings
         {
-            sentence
-        });
+            ContractResolver = new DefaultContractResolver
+            {
+                NamingStrategy = new CamelCaseNamingStrategy()
+            },
+            Formatting = Formatting.Indented
+        };
+        
+        var payload = new StringContent(JsonConvert.SerializeObject(new TokenEnricherRequest
+        {
+            Sentence = sentence
+        }, serializerSettings), Encoding.UTF8, "application/json");
+
+        using var response = await httpClient.PostAsync(Endpoint, payload);
 
         response.EnsureSuccessStatusCode();
 

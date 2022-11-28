@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { StoryService } from '../../services/story.service';
@@ -10,10 +10,14 @@ import { StoryService } from '../../services/story.service';
 })
 export class StoryInputComponent implements OnInit {
   form: FormGroup;
+  isSubmitted: boolean = false;
+
+  @Output() submitEvent: EventEmitter<boolean> = new EventEmitter();
+
 
   constructor(
     private formBuilder: FormBuilder,
-    private story: StoryService
+    private story: StoryService,
   ) {
     this.form = formBuilder.group({
       title: [ '', [Validators.required] ],
@@ -28,21 +32,19 @@ export class StoryInputComponent implements OnInit {
       const title: string = this.form.value.title;
       const text: string = this.form.value.text;
 
-      this.story
-      .validate({
-        title: title,
-        text: text
-      })
-      .subscribe(() => {
-        console.log("Input validation completed");
+      this.isSubmitted = true;
+      this.submitEvent.emit(this.isSubmitted);
 
-        this.story
-          .visualize({
-            title: title,
-            text: text
-          })
-          .subscribe(() => console.log("Story visualization completed"));
-      });
+      this.story
+        .validate({ title: title, text: text })
+        .subscribe(() => {
+          this.story
+            .visualize({ title: title, text: text })
+            .subscribe(() => {
+              this.isSubmitted = false;
+              this.submitEvent.emit(this.isSubmitted);
+            });
+        });
     }
   }
 }

@@ -66,6 +66,7 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services
     .AddDbContext<ApplicationDbContext>(options =>
     {
+        Console.WriteLine(builder.Configuration.GetConnectionString("Default"));
         options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
     })
     .AddIdentity<IdentityUser, IdentityRole>()
@@ -124,7 +125,20 @@ builder.Services.AddCors(options =>
 builder.Services.AddSignalR();
 
 // Configure Http Clients for NLP Services
-builder.Services.AddHttpClient();
+builder.Services.AddHttpClient("SentenceSplitter", config =>
+{
+    config.BaseAddress = new Uri(builder.Configuration.GetValue<string>("Services:SentenceSplitter"));
+});
+
+builder.Services.AddHttpClient("TokenEnricher", config =>
+{
+    config.BaseAddress = new Uri(builder.Configuration.GetValue<string>("Services:TokenEnricher"));
+});
+
+builder.Services.AddHttpClient("NamedEntityRecognizer", config =>
+{
+    config.BaseAddress = new Uri(builder.Configuration.GetValue<string>("Services:NamedEntityRecognizer"));
+});
 
 // Configure Services
 builder.Services

@@ -1,5 +1,4 @@
 <app-layout>
-
   <app-title
     [title]="title"
     [text]="description"
@@ -7,11 +6,15 @@
 
   <section class="grid grid-cols-2 mt-8">
     <div class="col-span-2 md:col-span-1">
-      <app-story-input></app-story-input>
+      <app-story-input
+        (submitEvent)="inputSubmitted=$event"
+      ></app-story-input>
     </div>
     <div class="col-span-2 mt-16 md:col-span-1 md:mt-0">
-      <app-story-graph></app-story-graph>
+      <app-story-graph
+        [inputSubmitted]="inputSubmitted"
+      ></app-story-graph>
     </div>
   </section>
-
 </app-layout>
+

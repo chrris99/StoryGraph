@@ -1,10 +1,22 @@
 <div class="w-full h-full flex justify-center">
   <ng-container *ngIf="nodes.length != 0 || edges.length != 0; else graphPlaceholder">
-      <ngx-graph
+    <ngx-graph
       [links]="edges"
       [nodes]="nodes"
       [showMiniMap]="true"
     >
+      <ng-template #nodeTemplate let-node>
+        <svg:g class="node" ngx-tooltip>
+          <svg:rect
+            [attr.width]="node.dimension.width"
+            [attr.height]="node.dimension.height"
+            [attr.fill]="node.data.color"
+          />
+          <svg:text alignment-baseline="central" [attr.x]="10" [attr.y]="node.dimension.height / 2">
+            {{node.label}}
+          </svg:text>
+        </svg:g>
+      </ng-template>
     </ngx-graph>
   </ng-container>
 
