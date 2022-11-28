@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  validationUrl: 'https://localhost:7067',
-  backendUrl: 'https://localhost:7255'
+  backendUrl: 'http://localhost:5000',
+  validationUrl: 'http://localhost:5001'
+
 };
 
 /*
