@@ -55,7 +55,7 @@ public sealed class StoryController : ControllerBase
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public IActionResult Delete()
+    public IActionResult Delete(string id)
     {
         return Ok();
     }

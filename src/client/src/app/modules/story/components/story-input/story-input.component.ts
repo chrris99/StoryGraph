@@ -16,8 +16,8 @@ export class StoryInputComponent implements OnInit {
     private story: StoryService
   ) {
     this.form = formBuilder.group({
-      title: [ '', Validators.required ],
-      text: [ '', Validators.required ]
+      title: [ '', [Validators.required] ],
+      text: [ '', [Validators.required] ]
     });
   }
 

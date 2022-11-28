@@ -3,14 +3,16 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Text;
 using Microsoft.AspNetCore.Http.Connections;
+using System.Text;
+
 using StoryGraph.Api;
 using StoryGraph.Application.Hubs;
 using StoryGraph.Application.Repositories;
 using StoryGraph.Application.Services;
 using StoryGraph.Infrastructure;
 using StoryGraph.Infrastructure.Authentication;
+using StoryGraph.Infrastructure.Extensions;
 using StoryGraph.Infrastructure.Language;
 using StoryGraph.Infrastructure.Repositories;
 
@@ -142,7 +144,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -155,5 +157,7 @@ app.MapHub<StoryHub>("/hub", options =>
 {
     options.Transports = HttpTransportType.WebSockets;
 });
+
+app.MigrateDatabase<ApplicationDbContext>();
 
 app.Run();

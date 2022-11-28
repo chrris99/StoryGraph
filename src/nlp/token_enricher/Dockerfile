@@ -5,6 +5,7 @@ RUN apt-get update
 RUN apt-get install -y
 
 ENV POETRY_VERSION 1.1.13
+ENV CURL_CA_BUNDLE ""
 
 # Install poetry
 RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py > get-poetry.py && \
@@ -18,8 +19,8 @@ RUN poetry config virtualenvs.create false
 COPY poetry.lock .
 COPY pyproject.toml .
 RUN poetry install --no-dev
-RUN pip install https://huggingface.co/huspacy/hu_core_news_lg/resolve/main/hu_core_news_lg-any-py3-none-any.whl
 
+RUN pip install https://huggingface.co/huspacy/hu_core_news_lg/resolve/main/hu_core_news_lg-any-py3-none-any.whl
 
 #copy app
 COPY src /src
