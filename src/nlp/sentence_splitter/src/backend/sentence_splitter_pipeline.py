@@ -17,9 +17,7 @@ class SentenceSplitterPipeline:
 
         document = payload['document']
         splitted = self.split_doc_to_sentences(document)
-        return {
-            'sentences': splitted
-        }
+        return splitted
 
 
 if __name__ == '__main__':

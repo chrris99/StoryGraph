@@ -25,9 +25,7 @@ class TokenEnricherPipeline:
 
         sentence = payload['sentence']
         enriched_tokens = self.enrich_sentence(sentence)
-        return {
-            'tokens': enriched_tokens
-        }
+        return enriched_tokens
 
 
 if __name__ == '__main__':
